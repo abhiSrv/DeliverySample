@@ -45,7 +45,7 @@ class DeliveryCallback (private val useCase: BaseUseCase<DeliveryItem, Int>,
 
     override fun onItemAtEndLoaded(itemAtEnd: DeliveryItem) {
         super.onItemAtEndLoaded(itemAtEnd)
-        if (!isLoaded) {
+        if (isLoaded) {
             loadingFirstPage = totalCount <= 0
             fetchFromNetwork(totalCount,lastLimit)
         }
@@ -88,11 +88,9 @@ class DeliveryCallback (private val useCase: BaseUseCase<DeliveryItem, Int>,
         }
         else {
             totalCount += list.size
-            if (list.size < 200) {
-                isLoaded = true
-                updateState(State.LOADED)
-            } else
-                updateState(State.DONE)
+            isLoaded = true
+            updateState(State.LOADED)
+
         }
        // EspressoIdlingResource.decrement()
     }
@@ -116,7 +114,7 @@ class DeliveryCallback (private val useCase: BaseUseCase<DeliveryItem, Int>,
     }
 
     fun onRefresh() {
-        //totalCount = 0
+        totalCount = 0
         isLoaded = false
         disposable.clear()
         onZeroItemsLoaded()

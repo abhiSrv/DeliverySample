@@ -21,7 +21,7 @@ interface DeliveryDao {
    // fun getDeliveriesByPage(): List<DeliveryEntity>
 
 
-    @Query("SELECT * FROM delivery_item ORDER BY id DESC")
+    @Query("SELECT * FROM delivery_item ORDER BY id ASC")
     fun getDeliveryList():  DataSource.Factory<Int, DeliveryItem>
 
     @Query("SELECT * FROM delivery_item WHERE id= :id")

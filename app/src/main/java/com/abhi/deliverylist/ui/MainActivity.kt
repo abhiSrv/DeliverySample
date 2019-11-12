@@ -15,6 +15,7 @@ import com.abhi.deliverylist.databinding.ActivityMainBinding
 import com.abhi.deliverylist.utils.BottomDialogListener
 import com.abhi.deliverylist.utils.BottomDialogType
 import com.abhi.deliverylist.viewModel.DeliveryViewModel
+import kotlinx.android.synthetic.main.activity_main.view.*
 import javax.inject.Inject
 
 class MainActivity : BaseActivity<ActivityMainBinding, DeliveryViewModel>(), BottomDialogListener { //AppCompatActivity() {
@@ -45,7 +46,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, DeliveryViewModel>(), Bot
         binding = getViewDataBinding()
         init()
         setUpObserver()
-
     }
 
     override fun setUpObserver() {
@@ -68,6 +68,49 @@ class MainActivity : BaseActivity<ActivityMainBinding, DeliveryViewModel>(), Bot
             when (it) {
                 State.ERROR, State.NETWORK_ERROR -> {
                     viewModel.isLoading.set(it == State.ERROR)
+                    adapter.setLoading(false, adapter.itemCount != 0)
+                    showErrorDialog(
+                        if (it == State.NETWORK_ERROR) {
+                            R.string.network_error
+                        } else R.string.list_error_message
+                    )
+                    if (binding.swipeRefresh.isRefreshing) {
+                        binding.swipeRefresh.isRefreshing = false
+                    }
+
+
+                    //  adapter.notifyItemChanged(adapter.itemCount - 1)
+                }
+                State.DONE->{
+                    if (binding.swipeRefresh.isRefreshing) {
+                        binding.swipeRefresh.isRefreshing = false
+                    }
+                    adapter.setLoading(false, false)
+                    showSuccessDialog(R.string.all_data_fetched)
+                }
+                State.PAGE_LOADING -> {
+                    adapter.setLoading(loading = true, loadMore = false)
+
+                    //  adapter.notifyItemChanged(adapter.itemCount - 1)
+                }
+                State.LOADED -> {
+                    adapter.setLoading(loading = false, loadMore = false)
+                    viewModel.isLoading.set(it == State.LOADING)
+                   // showSuccessDialog(R.string.all_data_fetched)
+                }
+                else -> {
+                    adapter.setLoading(loading = false, loadMore = false)
+                    viewModel.isLoading.set(it == State.LOADING)
+                }
+            }
+        })
+
+
+
+      /*  viewModel.boundaryCallback.state.observe(this, Observer {
+            when (it) {
+                State.ERROR, State.NETWORK_ERROR -> {
+                    viewModel.isLoading.set(it == State.ERROR)
 
                     showErrorDialog(
                         if (it == State.NETWORK_ERROR) {
@@ -83,8 +126,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, DeliveryViewModel>(), Bot
                     //  adapter.notifyItemChanged(adapter.itemCount - 1)
                 }
                 State.LOADED -> {
-                    viewModel.isLoading.set(it == State.LOADING)
+                    //viewModel.isLoading.set(it == State.LOADING)
                    // showSuccessDialog(R.string.all_data_fetched)
+                    adapter.notifyItemChanged(adapter.itemCount)
                 }
                 State.DONE->{
                     if (binding.swipeRefresh.isRefreshing) {
@@ -96,7 +140,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, DeliveryViewModel>(), Bot
                     viewModel.isLoading.set(it == State.LOADING)
                 }
             }
-        })
+        })*/
+
     }
 
     override fun showSuccessDialog(message: Int) {
