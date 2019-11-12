@@ -1,0 +1,13 @@
+<resources>
+  <string name="app_name">Parcel Delivery</string>
+  <string name="thing_to_deliver">Things to Deliver</string>
+    <string name="title_activity_detail">Map</string>
+  <string name="delivery_detail">Delivery Details</string>
+  <string name="empty_text">No Deliveries found</string>
+  <string name="network_error">Something went wrong. Check you internet and try again.</string>
+  <string name="list_error_message">List Error.</string>
+  <string name="all_data_fetched">All Data fetched.</string>
+  <string name="retry">Retry</string>
+  <string name="ok">Ok</string>
+  <string name="no_data_found">Fetching data</string>
+</resources>
