@@ -33,6 +33,7 @@
   2. Can use Koin for DI in kotlin 
   3. Code coverage can be improved by writing unit tests
   
-  
+# Changes required for Using
+  1. The value of key "google_maps_key" in "google_maps_key.xml" file needs to be updated 
   
  
