@@ -9,5 +9,7 @@
   <string name="all_data_fetched">All Data fetched.</string>
   <string name="retry">Retry</string>
   <string name="ok">Ok</string>
-  <string name="no_data_found">Fetching data</string>
+  <string name="fetching_data">Fetching data...</string>
+
+  <string name="swipe_down_refresh">No Data Found.\n Please Swip down to refresh</string>
 </resources>

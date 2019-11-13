@@ -44,10 +44,10 @@
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:id="@+id/no_data_tv"
+            android:id="@+id/main_tvMsg"
             android:layout_centerVertical="true"
             android:textAlignment="center"
-            android:text="@string/no_data_found"
+            android:text="@string/fetching_data"
             android:visibility="@{viewModel.noData?View.VISIBLE:View.GONE}"
             />
 

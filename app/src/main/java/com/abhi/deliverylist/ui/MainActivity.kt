@@ -75,6 +75,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, DeliveryViewModel>(), Bot
                         binding.swipeRefresh.isRefreshing = false
                     }
                     adapter.setLoading(false, false)
+                    if(adapter.itemCount==0){
+                        showMessage(getString(R.string.swipe_down_refresh))
+                    }
+
                 }
                 State.DONE->{
                     if (binding.swipeRefresh.isRefreshing) {
@@ -83,9 +87,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, DeliveryViewModel>(), Bot
                     adapter.setLoading(false, false)
                     showSuccessDialog(R.string.all_data_fetched)
                 }
+                State.LOADING -> {
+                    showMessage(getString(R.string.fetching_data))
+                }
                 State.PAGE_LOADING -> {
                     adapter.setLoading(loading = true, loadMore = false)
-
                     //  adapter.notifyItemChanged(adapter.itemCount - 1)
                 }
                 State.LOADED -> {
@@ -100,6 +106,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, DeliveryViewModel>(), Bot
             }
         })
 
+    }
+
+    fun showMessage(msg:String){
+        binding.mainTvMsg.text= msg
     }
 
     override fun showSuccessDialog(message: Int) {

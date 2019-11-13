@@ -11,5 +11,8 @@
     <string name="all_data_fetched">提取所有数据</string>
     <string name="retry">重试</string>
     <string name="ok">好</string>
-    <string name="no_data_found">取得资料</string>
+    <string name="fetching_data">正在获取数据...</string>
+
+    <string name="swipe_down_refresh">找不到数据。\n请向下滑动以刷新。</string>
+
 </resources>
