@@ -34,6 +34,6 @@
   3. Code coverage can be improved by writing unit tests
   
 # Changes required for Using
-  1. Generate your own key for google maps and update it in "google_maps_key.xml" file.
+  1. Generate your own key for google maps and update it in "google_maps_api.xml" file.
   
  
