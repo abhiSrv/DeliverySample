@@ -89,7 +89,7 @@ class DeliveryListAdapter () : PagedListAdapter<DeliveryItem,
 
         lateinit var deliveryItem: DeliveryItem
         override fun bind(deliveryItem: DeliveryItem) {
-            binding.tvName.text = deliveryItem.description+ " "+ deliveryItem.id
+            binding.tvName.text = deliveryItem.description
             Picasso.get().load(deliveryItem.imageUrl)
                 .placeholder(R.drawable.ic_placeholder)
                 .into(binding.ivDelivery)
