@@ -24,9 +24,8 @@ import com.squareup.picasso.Picasso
 const val VIEW_TYPE_ITEM = 0
 const val VIEW_TYPE_LOADING = 1
 
-class DeliveryListAdapter () : PagedListAdapter<DeliveryItem, DeliveryListAdapter.BaseViewHolder<*>>(mDiffCallback) {
-    //-----------onCreateViewHolder: bind view with data model---------
-
+class DeliveryListAdapter () : PagedListAdapter<DeliveryItem,
+        DeliveryListAdapter.BaseViewHolder<*>>(mDiffCallback) {
 
     private var loading = ObservableBoolean(false)
     private var loadMore = ObservableBoolean(false)
@@ -69,13 +68,6 @@ class DeliveryListAdapter () : PagedListAdapter<DeliveryItem, DeliveryListAdapte
             ))
     }
 
-
-/*    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if(holder as ItemHolder)
-        (holder .bind(getItem(position) as DeliveryItem)
-
-    }*/
-
     override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
         when (holder) {
             is ItemViewHolder -> {
@@ -117,7 +109,6 @@ class DeliveryListAdapter () : PagedListAdapter<DeliveryItem, DeliveryListAdapte
         override fun bind(item: Int) {
         }
     }
-
 
 
     companion object {

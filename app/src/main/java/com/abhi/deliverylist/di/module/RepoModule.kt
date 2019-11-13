@@ -18,7 +18,7 @@ class RepoModule {
 
     @Provides
     @Singleton
-    fun provideToDoDataSource(
+    fun provideDeliveryDataSource(
         dao: DeliveryDao
     ): BaseDataSource<DeliveryItem, Int> {
         return DeliveryDataSource(dao)
@@ -26,7 +26,7 @@ class RepoModule {
 
     @Provides
     @Singleton
-    fun provideToDoRepository(
+    fun provideDeliveryRepository(
         service: DeliveriesApi,
        dataSource: DeliveryDataSource
     ): BaseRepo<DeliveryItem, Int> {

@@ -18,5 +18,5 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(DeliveryViewModel::class)
-    internal abstract fun toDoListViewModel(viewModel: DeliveryViewModel): ViewModel
+    internal abstract fun deliveryListViewModel(viewModel: DeliveryViewModel): ViewModel
 }

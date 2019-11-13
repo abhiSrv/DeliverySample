@@ -11,6 +11,7 @@ import com.abhi.deliverylist.ui.DeliveryCallback
 import com.abhi.deliverylist.utils.NetworkUtils
 import javax.inject.Inject
 
+const val PAGE_SIZE=20
 class DeliveryViewModel @Inject constructor(private val useCase: DeliveryUseCase, private val networkUtils: NetworkUtils): BaseViewModel() {
 
     var itemList: LiveData<PagedList<DeliveryItem>>
@@ -20,8 +21,8 @@ class DeliveryViewModel @Inject constructor(private val useCase: DeliveryUseCase
 
     init {
         val config = PagedList.Config.Builder()
-            .setPageSize(20)
-            .setInitialLoadSizeHint(20)
+            .setPageSize(PAGE_SIZE)
+            .setInitialLoadSizeHint(PAGE_SIZE)
             .setEnablePlaceholders(false)
             .build()
         boundaryCallback =
@@ -37,6 +38,5 @@ class DeliveryViewModel @Inject constructor(private val useCase: DeliveryUseCase
         boundaryCallback.onRefresh()
 
     }
-
 
 }

@@ -49,6 +49,7 @@ class DeliveryCallback (private val useCase: BaseUseCase<DeliveryItem, Int>,
             loadingFirstPage = totalCount <= 0
             fetchFromNetwork(totalCount,lastLimit)
         }
+
     }
 
     fun fetchFromNetwork(offset: Int, limit: Int) {
@@ -56,8 +57,6 @@ class DeliveryCallback (private val useCase: BaseUseCase<DeliveryItem, Int>,
             updateState(State.NETWORK_ERROR)
             return
         }
-
-
         if (offset==0){
             updateState(State.LOADING)
         }else{
@@ -92,7 +91,6 @@ class DeliveryCallback (private val useCase: BaseUseCase<DeliveryItem, Int>,
             updateState(State.LOADED)
 
         }
-       // EspressoIdlingResource.decrement()
     }
 
     private fun error(throwable: Throwable) {
@@ -101,7 +99,8 @@ class DeliveryCallback (private val useCase: BaseUseCase<DeliveryItem, Int>,
         } else {
             updateState(State.ERROR)
         }
-       // EspressoIdlingResource.decrement()
+        isLoaded = true
+
     }
 
     fun updateState(state: String) {

@@ -1,11 +1,9 @@
 package com.abhi.deliverylist.ui
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.abhi.deliverylist.BR
 import com.abhi.deliverylist.R
@@ -15,7 +13,6 @@ import com.abhi.deliverylist.databinding.ActivityMainBinding
 import com.abhi.deliverylist.utils.BottomDialogListener
 import com.abhi.deliverylist.utils.BottomDialogType
 import com.abhi.deliverylist.viewModel.DeliveryViewModel
-import kotlinx.android.synthetic.main.activity_main.view.*
 import javax.inject.Inject
 
 class MainActivity : BaseActivity<ActivityMainBinding, DeliveryViewModel>(), BottomDialogListener { //AppCompatActivity() {
@@ -77,9 +74,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, DeliveryViewModel>(), Bot
                     if (binding.swipeRefresh.isRefreshing) {
                         binding.swipeRefresh.isRefreshing = false
                     }
-
-
-                    //  adapter.notifyItemChanged(adapter.itemCount - 1)
+                    adapter.setLoading(false, false)
                 }
                 State.DONE->{
                     if (binding.swipeRefresh.isRefreshing) {
@@ -105,43 +100,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, DeliveryViewModel>(), Bot
             }
         })
 
-
-
-      /*  viewModel.boundaryCallback.state.observe(this, Observer {
-            when (it) {
-                State.ERROR, State.NETWORK_ERROR -> {
-                    viewModel.isLoading.set(it == State.ERROR)
-
-                    showErrorDialog(
-                        if (it == State.NETWORK_ERROR) {
-                            R.string.network_error
-                        } else R.string.list_error_message
-                    )
-                    if (binding.swipeRefresh.isRefreshing) {
-                        binding.swipeRefresh.isRefreshing = false
-                    }
-                    //  adapter.notifyItemChanged(adapter.itemCount - 1)
-                }
-                State.PAGE_LOADING -> {
-                    //  adapter.notifyItemChanged(adapter.itemCount - 1)
-                }
-                State.LOADED -> {
-                    //viewModel.isLoading.set(it == State.LOADING)
-                   // showSuccessDialog(R.string.all_data_fetched)
-                    adapter.notifyItemChanged(adapter.itemCount)
-                }
-                State.DONE->{
-                    if (binding.swipeRefresh.isRefreshing) {
-                        binding.swipeRefresh.isRefreshing = false
-                    }
-                    showSuccessDialog(R.string.all_data_fetched)
-                    }
-                else -> {
-                    viewModel.isLoading.set(it == State.LOADING)
-                }
-            }
-        })*/
-
     }
 
     override fun showSuccessDialog(message: Int) {
@@ -154,7 +112,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, DeliveryViewModel>(), Bot
 
     override fun showErrorDialog(message: Int) {
        // Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-
         openDialog(
             BottomDialogType.ERROR_IN_FETCHING,
             getString(message), this
@@ -165,11 +122,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, DeliveryViewModel>(), Bot
         adapter = DeliveryListAdapter()
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
-       /* binding.recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                this, DividerItemDecoration.VERTICAL
-            )
-        )*/
+
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.onRefresh()
         }

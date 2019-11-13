@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">包裹运送</string>
+    <string name="thing_to_deliver">交付的东西</string>
+    <string name="title_activity_detail">地图</string>
+    <string name="delivery_detail">交货细节</string>
+    <string name="empty_text">找不到交货</string>
+    <string name="network_error">出问题了。检查您的互联网，然后重试.</string>
+    <string name="list_error_message">清单错误</string>
+    <string name="all_data_fetched">提取所有数据</string>
+    <string name="retry">重试</string>
+    <string name="ok">好</string>
+    <string name="no_data_found">取得资料</string>
+</resources>

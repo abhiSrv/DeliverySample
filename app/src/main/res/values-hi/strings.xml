@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">पार्सल वितरण</string>
+    <string name="thing_to_deliver">उद्धार करने की बातें</string>
+    <string name="title_activity_detail">नक्शा</string>
+    <string name="delivery_detail">डिलिवरी का विवरण</string>
+    <string name="empty_text">कोई डिलीवरी नहीं मिली</string>
+    <string name="network_error">कुछ गलत हो गया। आप इंटरनेट की जाँच करें और फिर से प्रयास करें।</string>
+    <string name="list_error_message">सूची त्रुटि।</string>
+    <string name="all_data_fetched">सभी डेटा लाया गया।</string>
+    <string name="retry">पुन: प्रयास करें</string>
+    <string name="ok">ठीक</string>
+    <string name="no_data_found">डेटा लाया जा रहा है</string>
+
+</resources>
